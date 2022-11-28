@@ -1,3 +1,20 @@
+<?php 
+include("./server/connect.php");
+ if(isset($_GET['product_id'])){
+    $product_id=$_GET['product_id'];
+    $qry="select * from products where product_id=$product_id";
+    
+    $result = mysqli_query($con,$qry);
+
+ }else{
+    header("location:index.php");
+ }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,75 +91,42 @@
         </div>
 
     </nav>
-
-
-    <div class="container">
-        <h3 class="mt-5">Your Cart</h3>
-
-        <table class="table mt-5 ">
-            <tr class="bg-primary">
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>SubTotal</th>
-            </tr>
-
-            <tr class="bg-secondary ">
-                <td>
-                    <div class="product-info">
-                        <img src="../E-com/images/American Tourister 32 Ltrs.jpg"
-                            style="width:50%; height:100px; object-fit:contain;" alt="" srcset="">
-                    </div>
-                    <div>
-                        <p>American Tourister</p>
-                        <small>500/-</small><br>
-                        <a href="" class="remove-btn btn btn-success">Remove</a>
-                    </div>
-                </td>
-                <td>
-                    <input type="number" value="1">
-                    <a href="" class="edit-btn btn m-1 btn-success">Edit</a>
-                </td>
-                <td>
-                    <span>500/-</span>
-                </td>
-            </tr>
-
-        </table>
-
-        <table class="table bg-secondary">
-            <tr>
-                <td>
-                    <p>SubTotal</p>
-                </td>
-                <td>
-                    <p>500/-</p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p>Total</p>
-                </td>
-                <td>
-                    <p>500/-</p>
-                </td>
-            </tr>
-
-        </table>
-        <button class="btn btn-primary  mb-5">Checkout</button>
-
-
-
+    <?php while($row=mysqli_fetch_array($result)) {?>
+       
+    <div class="row mt-5">
+    
+        <div class="col-md-6 ">
+            <img src="./assets/images/<?php echo $row['product_image1'];?>" class="img-fluid w-100 "style='height: 300px; object-fit:contain;' alt="" srcset="">
+        </div> 
+    
+        <div class="col-md-6">
+            <h3 class="text-center"><?php echo $row['product_name'] ?></h3>
+            <p class="mt-5">Price: <?php echo $row['product_price'] ?>/-</p>
+            <form action="cart.php" method="post">
+                <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
+            <input type="hidden" name="product_image" value="<?php echo $row['product_image1'];?>">
+            <input type="hidden" name="product_name" value="<?php echo $row['product_name'];?>">
+            <input type="hidden" name="product_price" value="<?php echo $row['product_price'];?>">
+            <input type="number" name="product_quantity" value="1">
+            <button class="btn btn-primary " type="submit" name="add-to-cart">Add to Cart</button>
+            </form>
+        </div>
+       
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <img src="./assets/images/<?php echo $row['product_image2'] ?>" class="img-fluid w-100 "style='height: 300px; object-fit:contain;' alt="" srcset="">
+        </div> 
+    <div class="col-md-6">
+        <h4 class="mt-5 mb-5">Product Details</h4>
+        <span><?php echo $row['product_description'] ?></span>
     </div>
 
+    </div>
+   
+ <?php } ?>
 
-
-    <footer class="mb-0">
-        <div class=" bg-primary p-3 text-light ">
-            <p class="text-center ">@copyright 2022</p>
-        </div>
-
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
