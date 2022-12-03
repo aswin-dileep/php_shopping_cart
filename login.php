@@ -39,8 +39,8 @@
             <label id="showpd">Show Password</label> <input type="checkbox" class="form-check-input" onclick="showPassword()"> <br>
 
             <button type="submit" id="login-btn" class="btn   btn-primary mt-2 mb-3" name="login">Login</button> <br>
-            <button class="btn btn-success mb-3"> <a href="create.php" style="color: white;
-                text-decoration: none;" class="login-btn">Create Account</a> </button>
+            <button class="btn btn-success mb-3" name="register"> <a href="register.php" style="color: white;
+                text-decoration: none;"  class="login-btn">Create Account</a> </button>
         </form>
 
     </div>

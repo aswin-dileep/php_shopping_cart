@@ -38,14 +38,44 @@ if (isset($_POST['add-to-cart'])) {
         );
         $_SESSION['cart'][$product_id] = $product_array;
     }
+
+    //calculate total
+    CartTotal();
+
+
     //remove form cart
 } elseif (isset($_POST['remove_product'])) {
+
     $product_id = $_POST['product_id'];
     unset($_SESSION['cart'][$product_id]);
+} elseif (isset($_POST['edit_quantity'])) {
+    // we get id and quantity form the form
+    $product_id = $_POST['product_id'];
+    $product_quantity = $_POST['product_quantity'];
+    // get the product array form the session
+    $product_array = $_SESSION['cart'][$product_id];
+    // update the product array
+    $product_array['product_quantity'] = $product_quantity;
+    //return array back to its place
+    $_SESSION['cart'][$product_id] = $product_array;
 } else {
-    header("location:index.php");
 }
 
+
+function CartTotal()
+{
+
+    $total = 0;
+
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $price = $value['product_price'];
+        $quantity = $value['product_quantity'];
+        $total = $total + ($price * $quantity);
+    }
+
+    return $total;
+}
+$_SESSION['total'] = CartTotal();
 ?>
 
 
@@ -151,40 +181,36 @@ if (isset($_POST['add-to-cart'])) {
                         </div>
                     </td>
                     <td>
-                        <input type="number" value="<?php echo $value['product_quantity'] ?>">
-                        <a href="" class="edit-btn btn m-1 btn-success">Edit</a>
+
+                        <form action="" method="post">
+                            <input type="hidden" name="product_id" value="<?php echo $value['product_id'] ?>">
+                            <input type="number" name="product_quantity" value="<?php echo $value['product_quantity'] ?>">
+                            <input type="submit" value="Edit" class="btn btn-success m-1" name="edit_quantity">
+                        </form>
+
                     </td>
                     <td>
-                        <span><?php echo $value['product_price'] ?>/-</span>
+                        <span><?php echo $value['product_price'] * $value['product_quantity'] ?>/-</span>
                     </td>
                 </tr>
             <?php } ?>
         </table>
 
-        <table class="table bg-secondary">
-            <tr>
-                <td>
-                    <p>SubTotal</p>
-                </td>
-                <td>
-                    <p>500/-</p>
-                </td>
-            </tr>
 
+        <table class="table bg-secondary ">
             <tr>
                 <td>
                     <p>Total</p>
                 </td>
                 <td>
-                    <p>500/-</p>
+                    <p class="text-center text-light"> <?php echo $_SESSION['total']; ?>/-</p>
                 </td>
             </tr>
 
         </table>
-        <button class="btn btn-primary  mb-5">Checkout</button>
-
-
-
+        <form action="checkout.php" method="post">
+            <input type="submit" value="Checkout" name="checkout" class="btn btn-primary mb-5">
+        </form>
     </div>
 
 
