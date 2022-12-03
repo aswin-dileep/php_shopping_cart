@@ -20,14 +20,9 @@ if (isset($_POST['register'])) {
     } else {
         // if the email already exist 
         $email_qry = "SELECT * FROM users where user_email='$email'";
-        $email_stmt = mysqli_prepare($con, $email_qry);
-        mysqli_stmt_execute($email_stmt);
-        mysqli_stmt_store_result($email_stmt);
+        $email_result = mysqli_query($con, $email_qry);
 
-        
-        
-
-        if (mysqli_stmt_num_rows($email_stmt) !== 0) {
+        if (mysqli_num_rows($email_result) !== 0) {
 
             header('location:register.php?error="user with this email already exist"');
         } else {
