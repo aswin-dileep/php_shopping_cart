@@ -1,6 +1,12 @@
 <?php
 include("./server/connect.php");
 session_start();
+
+
+if (isset($_SESSION['logged_in'])) {
+    header("location:Account.php");
+    exit;
+}
 if (isset($_POST['register'])) {
 
     $name = $_POST['name'];
@@ -11,7 +17,6 @@ if (isset($_POST['register'])) {
     if ($password !== $Cpassword) {
 
         header('location:register.php?error="password do not match "');
-
     } elseif (strlen($password) < 6) {
 
         header('location:register.php?error="password is too small need 6 character  at least"');
@@ -27,14 +32,14 @@ if (isset($_POST['register'])) {
             header('location:register.php?error="user with this email already exist"');
         } else {
             // if account was created successfully
-           $password = md5($password);
+            $password = md5($password);
             $register_qry = "INSERT INTO users (user_name,user_email,user_password) VALUES('$name','$email','$password')";
 
             if (mysqli_query($con, $register_qry)) {
                 $_SESSION['user_email'] = $email;
                 $_SESSION['user_name'] = $name;
-                $_SESSION['loged_in'] = true;
-                header("location:Account.php?register=you register successfully");
+                $_SESSION['logged_in'] = true;
+                header("location:Account.php?register='you register successfully'");
             } else {
                 //account could not be created
                 header('location:register.php?error="could not create an account at the moment "');
@@ -42,9 +47,6 @@ if (isset($_POST['register'])) {
         }
     }
     // if user has already registered 
-}elseif(isset($_SESSION['loged_in'])){
-    header("location:Account.php");
-    exit;
 }
 ?>
 
@@ -80,17 +82,17 @@ if (isset($_POST['register'])) {
                                         echo $_GET['error'];
                                     } ?></p>
             <div class="container">
-                <input type="text" name="name" class="form-control mt-4"  required placeholder="Name" >
-                <input type="text"  name="email" class="form-control mt-4" required placeholder="Email">
-                <input type="password" name="password" class="form-control mt-3 " required placeholder="Password" id="" >
-                <input type="password" name="confirm_password" class="form-control mt-3" required placeholder="Confirm-Password" id="password" >
+                <input type="text" name="name" class="form-control mt-4" required placeholder="Name">
+                <input type="text" name="email" class="form-control mt-4" required placeholder="Email">
+                <input type="password" name="password" class="form-control mt-3 " required placeholder="Password" id="">
+                <input type="password" name="confirm_password" class="form-control mt-3" required placeholder="Confirm-Password" id="password">
 
 
             </div>
 
 
             <label id="showpd">Show Password</label> <input type="checkbox" class="form-check-input" onclick="showPassword()"> <br>
-             <input type="submit" class="btn   btn-success mt-2 mb-2" name="register" value="Register">
+            <input type="submit" class="btn   btn-success mt-2 mb-2" name="register" value="Register">
             <!-- <button type="submit" id="login-btn" class="btn   btn-success mt-2 mb-2" name="register">Register</button> <br> -->
             <div class="p-2">
                 <a href="login.php" style=" text-decoration: none;" class="login-btn text-info ">Already have an account?Login</a>
@@ -100,13 +102,6 @@ if (isset($_POST['register'])) {
     </div>
 
 
-
-    <!-- <footer class="mb-0">
-        <div class=" bg-primary p-3 text-light ">
-            <p class="text-center ">@copyright 2022</p>
-        </div>
-
-    </footer> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
