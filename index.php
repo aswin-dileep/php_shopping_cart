@@ -29,30 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="products.php">Products</a>
                 </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Travel</a></li>
-                            <li><a class="dropdown-item" href="#">Casual</a></li>
-                            <li><a class="dropdown-item" href="#">Handbags</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                            Brands
-                            <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item">Nike</a></li>
-                                <li><a href="" class="dropdown-item">Puma</a></li>
-                                <li><a href="" class="dropdown-item">Addidas</a></li>
-                            </ul>
-                        </button>
-                    </div>
-                </li>
+               
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact Us</a>
                 </li>

@@ -103,7 +103,8 @@ include("./server/connect.php");
             <h3 class="text-center"><?php echo $row['product_name'] ?></h3>
             <p class="mt-5">Price: <?php echo $row['product_price'] ?>/-</p>
             <form action="cart.php" method="post">
-                <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
+                
+            <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
             <input type="hidden" name="product_image" value="<?php echo $row['product_image1'];?>">
             <input type="hidden" name="product_name" value="<?php echo $row['product_name'];?>">
             <input type="hidden" name="product_price" value="<?php echo $row['product_price'];?>">

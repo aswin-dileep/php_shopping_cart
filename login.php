@@ -24,7 +24,7 @@ if (isset($_POST['login_btn'])) {
                 $_SESSION['user_email'] = $row['user_email'];
                 $_SESSION['logged_in'] = true;
 
-                header("location:Account.php?message=logedin successfully");
+                header("location:Account.php?message=logged in successfully");
             }
 
         }else{

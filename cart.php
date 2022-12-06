@@ -5,8 +5,11 @@ if (isset($_POST['add-to-cart'])) {
     if (isset($_SESSION['cart'])) {
 
         $product_array_ids = array_column($_SESSION['cart'], "product_id");
+
         if (!in_array($_POST['product_id'], $product_array_ids)) {
+
             $product_id = $_POST['product_id'];
+
             $product_array = array(
                 'product_id' => $_POST['product_id'],
                 'product_name' => $_POST['product_name'],
@@ -14,6 +17,7 @@ if (isset($_POST['add-to-cart'])) {
                 'product_image' => $_POST['product_image'],
                 'product_quantity' => $_POST['product_quantity']
             );
+
             $_SESSION['cart'][$product_id] = $product_array;
 
             //product has already been added 
@@ -49,8 +53,10 @@ if (isset($_POST['add-to-cart'])) {
     $product_id = $_POST['product_id'];
     unset($_SESSION['cart'][$product_id]);
 } elseif (isset($_POST['edit_quantity'])) {
+
     // we get id and quantity form the form
     $product_id = $_POST['product_id'];
+    
     $product_quantity = $_POST['product_quantity'];
     // get the product array form the session
     $product_array = $_SESSION['cart'][$product_id];
