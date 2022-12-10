@@ -35,40 +35,17 @@ session_start();
                     <a class="nav-link active" aria-current="page" href="./">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="products.html">Products</a>
+                    <a class="nav-link" href="products.php">Products</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Travel</a></li>
-                            <li><a class="dropdown-item" href="#">Casual</a></li>
-                            <li><a class="dropdown-item" href="#">Laptop</a></li>
-                        </ul>
-                    </div>
+                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                            Brands
-                            <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item">Nike</a></li>
-                                <li><a href="" class="dropdown-item">Puma</a></li>
-                                <li><a href="" class="dropdown-item">Addidas</a></li>
-                            </ul>
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Account.html">Account<i class="fa-solid fa-user"></i></a>
+                    <a class="nav-link" href="Account.php">Account<i class="fa-solid fa-user"></i></a>
                 </li>
 
             </ul>

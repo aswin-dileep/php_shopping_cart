@@ -36,6 +36,8 @@ if (isset($_POST['register'])) {
             $register_qry = "INSERT INTO users (user_name,user_email,user_password) VALUES('$name','$email','$password')";
 
             if (mysqli_query($con, $register_qry)) {
+                $user_id = mysqli_insert_id($con);
+                $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_email'] = $email;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['logged_in'] = true;

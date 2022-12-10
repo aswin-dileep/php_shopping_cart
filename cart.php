@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_POST['add-to-cart'])) {
     // if the user already have added product to the cart
     if (isset($_SESSION['cart'])) {
@@ -54,25 +55,26 @@ if (isset($_POST['add-to-cart'])) {
     unset($_SESSION['cart'][$product_id]);
 } elseif (isset($_POST['edit_quantity'])) {
 
-    // we get id and quantity form the form
+    // we get id and quantity from the form
     $product_id = $_POST['product_id'];
     
     $product_quantity = $_POST['product_quantity'];
-    // get the product array form the session
+    // get the product array from the session
     $product_array = $_SESSION['cart'][$product_id];
     // update the product array
     $product_array['product_quantity'] = $product_quantity;
     //return array back to its place
     $_SESSION['cart'][$product_id] = $product_array;
 } else {
+    header("location:index.php");
 }
+ 
 
 
 function CartTotal()
 {
-
     $total = 0;
-
+   
     foreach ($_SESSION['cart'] as $key => $value) {
         $price = $value['product_price'];
         $quantity = $value['product_quantity'];
@@ -114,40 +116,17 @@ $_SESSION['total'] = CartTotal();
                     <a class="nav-link active" aria-current="page" href="./">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="products.html">Products</a>
+                    <a class="nav-link" href="products.php">Products</a>
+                </li>
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Travel</a></li>
-                            <li><a class="dropdown-item" href="#">Casual</a></li>
-                            <li><a class="dropdown-item" href="#">Laptop</a></li>
-                        </ul>
-                    </div>
+                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                            Brands
-                            <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item">Nike</a></li>
-                                <li><a href="" class="dropdown-item">Puma</a></li>
-                                <li><a href="" class="dropdown-item">Addidas</a></li>
-                            </ul>
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Account.html">Account<i class="fa-solid fa-user"></i></a>
+                    <a class="nav-link" href="Account.php">Account<i class="fa-solid fa-user"></i></a>
                 </li>
 
             </ul>

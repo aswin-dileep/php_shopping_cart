@@ -27,11 +27,11 @@ if (isset($_POST['change_password'])) {
     $user_email = $_SESSION['user_email'];
     $check_pass_qry = "select * from users where user_email='$user_email'";
 
-    $check_pass_result = mysqli_query($con,$check_pass_qry);
+    $check_pass_result = mysqli_query($con, $check_pass_qry);
 
-    while($row=mysqli_fetch_array($check_pass_result)){
+    while ($row = mysqli_fetch_array($check_pass_result)) {
 
-        if($current_password==$row['user_password']){
+        if ($current_password == $row['user_password']) {
 
             if ($new_password !== $confirm_password) {
                 header("location:Account.php?error=password do not match");
@@ -39,9 +39,9 @@ if (isset($_POST['change_password'])) {
                 header("location:Account.php?error= password is too short 6 characters needed ");
             } else {
                 $new_password = md5($new_password);
-        
-                
-        
+
+
+
                 $change_qry = "UPDATE users SET user_password='$new_password' WHERE user_email='$user_email'";
                 $change_result = mysqli_query($con, $change_qry);
                 if ($change_result) {
@@ -50,12 +50,16 @@ if (isset($_POST['change_password'])) {
                     header("location:Account.php?error=somthing went wrong password not changed ");
                 }
             }
-        }else{
+        } else {
             header("location:Account.php?error=wrong password ");
         }
     }
-   
-    
+}
+
+if (isset($_SESSION['logged_in'])) {
+    $user_id = $_SESSION['user_id'];
+    $order_qry = "SELECT * FROM orders WHERE user_id='$user_id'";
+    $order_result = mysqli_query($con, $order_qry);
 }
 
 ?>
@@ -93,40 +97,17 @@ if (isset($_POST['change_password'])) {
                     <a class="nav-link active" aria-current="page" href="./">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="products.html">Products</a>
+                    <a class="nav-link" href="products.php">Products</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Travel</a></li>
-                            <li><a class="dropdown-item" href="#">Casual</a></li>
-                            <li><a class="dropdown-item" href="#">Laptop</a></li>
-                        </ul>
-                    </div>
+                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                            Brands
-                            <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item">Nike</a></li>
-                                <li><a href="" class="dropdown-item">Puma</a></li>
-                                <li><a href="" class="dropdown-item">Addidas</a></li>
-                            </ul>
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Account.html">Account<i class="fa-solid fa-user"></i></a>
+                    <a class="nav-link" href="Account.php">Account<i class="fa-solid fa-user"></i></a>
                 </li>
 
             </ul>
@@ -182,31 +163,45 @@ if (isset($_POST['change_password'])) {
             </form>
         </div>
     </div>
+
     <!-- Order section -->
     <div id="orders" class="container">
         <h3 class="mt-5">Your Order</h3>
 
         <table class="table mt-5 text-center ">
             <tr class="bg-primary">
-                <th>Product</th>
-                <th>Date</th>
+                <th>Order_id</th>
+                <th>Order cost</th>
+                <th>Order status</th>
+                <th>Order date</th>
+                <th>Order details</th>
             </tr>
+            <?php while ($order = mysqli_fetch_array($order_result)) { ?>
+                <tr class="bg-secondary ">
+                    <td>
+                        <h6><?php echo $order['order_id'] ?></h6>
+                    </td>
 
-            <tr class="bg-secondary ">
-                <td>
-                    <div class="product-info">
-                        <img src="../E-com/images/American Tourister 32 Ltrs.jpg" style="width:50%; height:100px; object-fit:contain;" alt="" srcset="">
-                    </div>
-                    <div>
-                        <span>American Tourister</span>
-                    </div>
-                </td>
+                    <td>
+                        <h6><?php echo $order['order_cost'] ?></h6>
+                    </td>
 
-                <td>
-                    <p>22-12-2022</p>
-                </td>
-            </tr>
+                    <td>
+                        <h6><?php echo $order['order_status'] ?></h6>
+                    </td>
+                    <td>
+                        <h6><?php echo $order['order_date'] ?></h6>
+                    </td>
+                    <td>
+                        <form action="order_details.php" method="get">
+                            <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
+                            <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                            <input type="submit" class="btn btn-primary" name="details_btn" value="Details">
+                        </form>
+                    </td>
+                </tr>
 
+            <?php } ?>
         </table>
 
 
