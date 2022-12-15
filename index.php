@@ -1,4 +1,5 @@
 <?php include("./layout/header.php"); ?>
+
     <div class="nabbar nav-expant-lg bg-secondary p-2">
         
       <a href="login.php" class="btn btn-success"><?php if(isset($_SESSION['logged_in'])){echo"logout"; }else{

@@ -17,7 +17,7 @@
 <body class="bg-light">
     <!-- main navbar section -->
 
-    <nav class="navbar navbar-expand-lg  bg-primary py-3 ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary py-3 ">
         <div class="container-fluid">
             <a class="navbar-brand" href="./">Shopping site</a>
 
@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="products.php">Products</a>
                 </li>
-
+                
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
