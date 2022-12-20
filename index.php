@@ -6,6 +6,7 @@
         echo "login";
       } ?></a> 
     </div>
+    <img src="./assets/images/homepage1.webp" style="width: 100%; object-fit:contain;" alt="" srcset="">
     <div class=" mx-5 mt-5 ">
 
         <div class="row">

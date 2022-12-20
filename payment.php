@@ -13,9 +13,11 @@ session_start();
             <h2 class="mt-3">Payment</h2>
             <p class="mt-4"><?php if(isset($_GET['order_status'])){ echo $_GET['order_status']; }?></p>
             <p class="mt-4">Total payment :<?php if(isset($_SESSION['total'])){ echo $_SESSION['total']; }?></p>
-            <?php if(isset($_SESSION['total'])){  ?>
+            <?php if(isset($_SESSION['total']) && $_SESSION['total']!=0){  ?>
                 <input type="submit" value="Pay Now" class="btn btn-primary mt-3">
-                <?php } ?>
+                <?php } else { ?>
+                  <p>You don't have an order</p>
+                    <?php } ?>
             <?php if(isset($_GET['order_status']) && isset($_GET['orrder_status'])=="not paid"){ ?>
             <input type="submit" value="Pay Now" class="btn btn-primary mt-3">
             <?php } ?>

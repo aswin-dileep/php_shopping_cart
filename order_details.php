@@ -56,7 +56,7 @@ if (isset($_GET['details_btn']) && isset($_GET['order_id'])) {
 
         <?php if ($roder_status == 'not paid') {  ?>
             <div class="pay-btn ">
-            <form action="" method="post" >
+            <form action="payment.php" method="post" >
                     <input type="submit" value="Pay Now" id='payNow_btn'  class="btn btn-primary mb-5">
                 </form>
             </div>
