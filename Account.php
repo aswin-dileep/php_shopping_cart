@@ -58,7 +58,7 @@ if (isset($_POST['change_password'])) {
 
 if (isset($_SESSION['logged_in'])) {
     $user_id = $_SESSION['user_id'];
-    $order_qry = "SELECT * FROM orders WHERE user_id='$user_id'";
+    $order_qry = "SELECT * FROM orders WHERE user_id='$user_id' ";
     $order_result = mysqli_query($con, $order_qry);
 }
 
