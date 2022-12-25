@@ -65,9 +65,12 @@ if (isset($_POST['add-to-cart'])) {
     $product_array['product_quantity'] = $product_quantity;
     //return array back to its place
     $_SESSION['cart'][$product_id] = $product_array;
-} else {
-    // header("location:index.php");
-    //echo '<script>alert("The Cart is empty")</script>';
+} elseif(empty($_SESSION['cart'])) {
+    
+     echo '<script>alert("The Cart is empty")</script>';
+     
+     header("refresh:0;url=products.php");
+    
 }
 
 
@@ -155,11 +158,6 @@ $_SESSION['total'] = CartTotal();
 
 
 
-<footer class="mb-0">
-    <div class=" bg-primary p-3 text-light ">
-        <p class="text-center ">@copyright 2022</p>
-    </div>
 
-</footer>
 
 <?php include("./layout/footer.php"); ?>
