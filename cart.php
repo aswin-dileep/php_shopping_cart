@@ -67,7 +67,7 @@ if (isset($_POST['add-to-cart'])) {
     $_SESSION['cart'][$product_id] = $product_array;
 } elseif(empty($_SESSION['cart'])) {
     
-     echo '<script>alert("The Cart is empty")</script>';
+     echo '<script>alert("The Cart is empty... Please add some products to the Cart.....")</script>';
      
      header("refresh:0;url=products.php");
     

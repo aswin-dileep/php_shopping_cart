@@ -118,7 +118,7 @@ include("./server/connect.php");
                 </div>
 
                 <h5 class=" mt-5">Price</h5>
-                <input type="range" class="form-range " name="price" value="1000"  min="100" max="10000" id="customRange1">
+                <input type="range" class="form-range " name="price" value=""  min="100" max="10000" id="customRange1">
                 <div class="">
                     <span style="float: left;">100</span>
                     <span style="float: right;">10000</span>
