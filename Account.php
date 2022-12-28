@@ -71,7 +71,11 @@ if (isset($_SESSION['logged_in'])) {
     <!-- Account section -->
 
     <div class="row">
+        <?php if(isset($_GET['payment_message'])){?>
+        <p class="text-center text-success"><?php echo $_GET['payment_message']; ?></p>
+        <?php } ?>
         <div class="col-md-6 text-center">
+            
             <p class="text-center mt-3 text-success"><?php if (isset($_GET['message'])) {
                                                             echo $_GET['message'];
                                                         } ?></p>

@@ -72,6 +72,7 @@ function OrderTotal($order_details_result)
     <?php if ($order_status == 'not paid') {  ?>
         <div class="pay-btn ">
             <form action="payment.php" method="post">
+                <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
                 <input type="hidden" name="total_order" value="<?php echo $totalOrder ?>">
                 <input type="hidden" name="order_status" value="<?php echo $order_status ?>">
                 <input type="submit" value="Pay Now" name="Pay_btn" id='payNow_btn' class="btn btn-primary mb-5">

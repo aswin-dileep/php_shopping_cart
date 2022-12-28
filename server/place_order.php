@@ -54,7 +54,8 @@ if (isset($_POST['place_order'])) {
         mysqli_query($con, $order_items_qry);
     }
 
-
+    
+    $_SESSION['order_id']= $order_id;
 
 
     header('location:../payment.php?order_status="order placed successfully"');
