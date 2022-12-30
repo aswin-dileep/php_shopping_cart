@@ -22,16 +22,16 @@ if (isset($_POST['place_order'])) {
     $order_cost = $_SESSION['total'];
     $order_status = "not paid";
     $user_id = $_SESSION['user_id'];
-    $order_date = date('Y/m/d h:i:s');
+    $order_date = date('Y/m/d');
     $checkout_qry = "INSERT INTO orders (order_cost,order_status,user_id,user_phone,user_city,user_address,order_date) VALUES('$order_cost'
     ,'$order_status','$user_id','$phone','$city','$address','$order_date')";
 
     mysqli_query($con, $checkout_qry);
 
-    if(!mysqli_query($con, $checkout_qry)){
-        header("location:index.php");
-        exit;
-    }
+    // if(!mysqli_query($con, $checkout_qry)){
+    //     header("location:index.php");
+    //     exit;
+    // }
 
     $order_id = mysqli_insert_id($con);
 

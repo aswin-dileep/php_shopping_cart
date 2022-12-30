@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("./layout/header.php");
 
 if (isset($_POST['add-to-cart'])) {
     // if the user already have added product to the cart
@@ -78,20 +78,23 @@ if (isset($_POST['add-to-cart'])) {
 function CartTotal()
 {
     $total = 0;
+    $total_quantity =0;
 
     foreach ($_SESSION['cart'] as $key => $value) {
         $price = $value['product_price'];
         $quantity = $value['product_quantity'];
         $total = $total + ($price * $quantity);
+        $total_quantity += $quantity;
     }
-
+    $_SESSION['total_quantity']=$total_quantity;
     return $total;
+    
 }
 $_SESSION['total'] = CartTotal();
 ?>
 
 
-<?php include("./layout/header.php"); ?>
+
 <!-- main navbar section -->
 
 

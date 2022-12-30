@@ -1,7 +1,7 @@
 <?php
 include("./server/connect.php");
+include("./layout/header.php");
 
-session_start();
 
 
 if (!isset($_SESSION['logged_in'])) {
@@ -65,7 +65,7 @@ if (isset($_SESSION['logged_in'])) {
 ?>
 
 
-<?php include("./layout/header.php"); ?>
+<?php  ?>
 
 
     <!-- Account section -->

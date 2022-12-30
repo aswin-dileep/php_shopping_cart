@@ -22,7 +22,12 @@
      border-radius: 8px;
     
 } 
-.footer{
-    color: black;
-    background-color: green;
-}
+
+.cart_quantity {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  

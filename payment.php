@@ -1,7 +1,9 @@
 <?php
-
+include("./server/connect.php");
 session_start();
+
 include('stripeConfig.php');
+
 if(isset($_POST['total_order'])){
     $amount= $_POST['total_order']*100;
 }else{
@@ -27,7 +29,7 @@ if(isset($_POST['total_order'])){
             </form>
             
         <?php } elseif (isset($_SESSION['total']) && $_SESSION['total'] != 0) { ?>
-            <?php $order_id=$_SESSION=['order_id'] ?>
+            <?php $order_id=$_SESSION['order_id'] ?>
             <p class="mt-4">Total payment :<?php if (isset($_SESSION['total'])) {
                                                 echo $_SESSION['total'];
                                             } ?>/-</p>

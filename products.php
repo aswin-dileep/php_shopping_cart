@@ -1,6 +1,6 @@
 <?php
 include("./server/connect.php");
-
+session_start();
 
   if(isset($_POST['filter_search']))  {
 
@@ -69,7 +69,7 @@ include("./server/connect.php");
                     <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"><sup class="cart_quantity"><b ><?php if(isset($_SESSION['total_quantity']) && $_SESSION['total_quantity']!=0) {  echo $_SESSION['total_quantity'];}?> </b></sup></i>  </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Account.php">Account<i class="fa-solid fa-user"></i></a>
@@ -99,26 +99,26 @@ include("./server/connect.php");
                 <h5 class=" mt-5">Category</h5>
                  <form action="./products.php" method="POST">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Category" value="Casual bags" >
+                    <input class="form-check-input" type="radio" name="Category" value="Casual bags" <?php if(isset($category) && $category=='Casual bags'){echo 'checked';} ?> >
                     <label class="form-check-label" for="flexRadioDefault1">
                         Causal Bags
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Category" value="Travel bags" >
+                    <input class="form-check-input" type="radio" name="Category" value="Travel bags" <?php if(isset($category) && $category=='Travel bags'){echo 'checked';} ?> >
                     <label class="form-check-label" for="flexRadioDefault2">
                         Travel bags
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Category" value="Handbags " >
+                    <input class="form-check-input" type="radio" name="Category" value="Handbags" <?php if(isset($category) && $category=='Handbags'){echo 'checked';} ?>>
                     <label class="form-check-label" for="flexRadioDefault2">
                         Handbags
                     </label>
                 </div>
 
                 <h5 class=" mt-5">Price</h5>
-                <input type="range" class="form-range " name="price" value=""  min="100" max="10000" id="customRange1">
+                <input type="range" class="form-range " name="price" value="<?php if(isset($price)){ echo $price; } ?>"  min="100" max="10000" id="customRange1">
                 <div class="">
                     <span style="float: left;">100</span>
                     <span style="float: right;">10000</span>
