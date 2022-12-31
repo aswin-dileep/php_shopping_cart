@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+ include("./layout/header.php"); 
 
 if (!empty($_SESSION['cart'])) {
 } else {
@@ -12,7 +12,7 @@ if (!empty($_SESSION['cart'])) {
 ?>
 
 
-<?php include("./layout/header.php"); ?>
+
 
 
 <!-- checkout section -->
@@ -51,11 +51,6 @@ if (!empty($_SESSION['cart'])) {
 
 
 </div>
-<footer class="mb-0">
-    <div class=" bg-primary p-3 text-light ">
-        <p class="text-center ">@copyright 2022</p>
-    </div>
 
-</footer>
 
 <?php include("./layout/footer.php"); ?>

@@ -1,6 +1,6 @@
 <?php
 include("./server/connect.php");
-session_start();
+include('./layout/header.php');
 
 include('stripeConfig.php');
 
@@ -11,7 +11,7 @@ if(isset($_POST['total_order'])){
 }
 
 ?>
-<?php include('./layout/header.php'); ?>
+
 <!-- payment -->
 <div class="container">
     <div class="col-md-4 m-auto text-center">

@@ -22,12 +22,8 @@
      border-radius: 8px;
     
 } 
+.admin_panel{
+    height: 100vh;
+    
+}
 
-.cart_quantity {
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  
