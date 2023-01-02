@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+include("../server/connect.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -3,9 +3,10 @@
             <ul class="list-group list-group-item-secondary  ">
                 <li class=><a href="" class="list-group-item  list-group-item-secondary">Orders</a></li>
                 <li><a href="" class="list-group-item ">Products</a></li>
-                <li><a href="" class="list-group-item list-group-item-secondary">Customers</a></li>
+                <li><a href="account.php" class="list-group-item list-group-item-secondary">Account</a></li>
+                <li><a href="add_new_products.php" class="list-group-item list-group-item-secondary">Add New Products</a></li>
                 <li><a href="" class="list-group-item ">Create Products</a></li>
-                <li><a href="" class="list-group-item list-group-item-secondary">Account</a></li>
+               
             </ul>
 
         </div>
