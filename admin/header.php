@@ -19,7 +19,7 @@ include("../server/connect.php");
     <script src="../assets/js/index.js"></script>
 </head>
 
-<body>
+<body style="background-color:rgb(210, 224, 228);">
 
 <div class="navbar  bg-secondary">
   <h4 class="">Bag store</h4>
