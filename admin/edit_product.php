@@ -62,7 +62,7 @@ if (isset($_GET['product_id'])) {
                         <option value="<?php echo $product['product_category']; ?>"> Select </option>
                         <option value="casual bags">Casual Bags</option>
                         <option value="Travel bags">Travel Bags</option>
-                        <option value="Hand bags">Hand Bags</option>
+                        <option value="Handbags">Hand Bags</option>
                     </select>
 
                     <label for="">Color</label>

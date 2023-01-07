@@ -163,4 +163,3 @@ $_SESSION['total'] = CartTotal();
 
 
 
-<?php include("./layout/footer.php"); ?>
