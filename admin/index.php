@@ -8,7 +8,7 @@ if(isset($_POST['search_btn'])){
     $orders_qry ="SELECT * FROM orders WHERE order_id LIKE '%$search_key%' OR user_city LIKE '%$search_key%' OR order_status LIKE '$search_key%' 
     OR user_id LIKE '%$search_key%' OR user_phone LIKE '%$search_key%' OR user_address LIKE '%$search_key%' OR order_date LIKE '%$search_key%' ";
 }else{
-    $orders_qry = "SELECT * FROM orders ORDER BY order_id DESC  ";
+    $orders_qry = "SELECT * FROM orders ORDER BY order_id DESC LIMIT 15 ";
 }
 
 $all_orders = mysqli_query($con, $orders_qry);
@@ -53,7 +53,7 @@ $all_orders = mysqli_query($con, $orders_qry);
                     <td><?php echo $orders['user_address']; ?></td>
                     <td><?php echo $orders['user_city']; ?></td>
                     <td><?php echo $orders['order_date']; ?></td>
-                    <td><a href="" class="btn btn-primary">Edit</a></td>
+                    <td><a href="edit_order.php?order_id=<?php echo $orders['order_id'] ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="" class="btn btn-danger">Delete</a></td>
 
                 </tr>

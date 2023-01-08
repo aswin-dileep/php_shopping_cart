@@ -38,7 +38,7 @@ if (isset($_GET['product_id'])) {
 
 <div class="row">
     <?php include("./sidemenu.php"); ?>
-    <div class="col-md-10">
+    <div class="col-md-10 bg-light">
         <h2>Admin Panel</h2>
         <hr>
         <h3 class="text-center">Edit Product</h3>
@@ -58,8 +58,8 @@ if (isset($_GET['product_id'])) {
                     <input type="text" name="product_price" value="<?php echo $product['product_price']; ?>" class="form-control">
 
                     <label for="">Category</label>
-                    <select name="product_category" id="" class="form-control w-50">
-                        <option value="<?php echo $product['product_category']; ?>"> Select </option>
+                    <select name="product_category" id="" class="form-select w-50">
+                        <option value="<?php echo $product['product_category']; ?>"> <?php echo $product['product_category']; ?> </option>
                         <option value="casual bags">Casual Bags</option>
                         <option value="Travel bags">Travel Bags</option>
                         <option value="Handbags">Hand Bags</option>

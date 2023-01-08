@@ -1,4 +1,4 @@
-<div class="admin_panel col-md-2 bg-primary text-center ">
+<div class="admin_panel col-md-2 text-center ">
     <h4><a href="index.php" class="navbar-brand">Admin panel</a></h4>
 
     <ul class="list-group list-group-item-secondary  ">
