@@ -33,6 +33,9 @@ $all_products = mysqli_query($con, $products_qry);
         <?php if (isset($_GET['edit_success_msg'])) { ?>
             <p class="text-success text-center mt-3"><?php echo $_GET['edit_success_msg'] ?></p>
         <?php } ?>
+        <?php if (isset($_GET['product_add__msg'])) { ?>
+            <p class="text-success text-center mt-3"><?php echo $_GET['product_add__msg'] ?></p>
+        <?php } ?>
 
         <?php if (isset($_GET['edit_error_msg'])) { ?>
             <p class="text-danger text-center mt-3"><?php echo $_GET['edit_error_msg'] ?></p>
@@ -46,7 +49,7 @@ $all_products = mysqli_query($con, $products_qry);
                 <th>Price</th>
                 <th>Category</th>
                 <th>Color</th>
-
+                <th>Quantity</th>
                 <th>Edit </th>
                 <th>Delete</th>
             </tr>
@@ -58,7 +61,7 @@ $all_products = mysqli_query($con, $products_qry);
                     <td><?php echo $product['product_price']; ?>/-</td>
                     <td><?php echo $product['product_category']; ?></td>
                     <td><?php echo $product['product_color']; ?></td>
-
+                    <td><?php echo $product['product_quantity']; ?></td>
                     <td><a href="edit_product.php?product_id=<?php echo $product['product_id'] ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="delete_product.php?product_id=<?php echo $product['product_id']?>" class="btn btn-danger">Delete</a></td>
 

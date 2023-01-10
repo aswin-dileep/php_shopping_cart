@@ -11,9 +11,10 @@ if (isset($_GET['product_id'])) {
     $product_description = $_POST['product_description'];
     $product_category = $_POST['product_category'];
     $product_price = $_POST['product_price'];
+    $product_quantity = $_POST['product_quantity'];
     $product_color = $_POST['product_color'];
 
-    $edit_qry = "UPDATE products SET product_name='$product_name', product_description='$product_description', product_price='$product_price', product_category='$product_category',product_color='$product_color'  WHERE product_id='$product_id'";
+    $edit_qry = "UPDATE products SET product_name='$product_name', product_description='$product_description', product_price='$product_price',product_quantity='$product_quantity', product_category='$product_category',product_color='$product_color'  WHERE product_id='$product_id'";
     
     if(mysqli_query($con, $edit_qry)){
         
@@ -56,6 +57,8 @@ if (isset($_GET['product_id'])) {
 
                     <label for="">Price</label>
                     <input type="text" name="product_price" value="<?php echo $product['product_price']; ?>" class="form-control">
+                    <label for="">Quantity</label>
+                    <input type="text" name="product_quantity" value="<?php echo $product['product_quantity']; ?>" class="form-control">
 
                     <label for="">Category</label>
                     <select name="product_category" id="" class="form-select w-50">

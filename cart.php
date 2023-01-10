@@ -69,7 +69,7 @@ if (isset($_POST['add-to-cart'])) {
     
      echo '<script>alert("The Cart is empty... Please add some products to the Cart.....")</script>';
      
-     header("refresh:0;url=products.php");
+    // header("refresh:0;url=products.php");
     
 }
 
@@ -79,13 +79,14 @@ function CartTotal()
 {
     $total = 0;
     $total_quantity =0;
-
+       if(isset($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $key => $value) {
         $price = $value['product_price'];
         $quantity = $value['product_quantity'];
         $total = $total + ($price * $quantity);
         $total_quantity += $quantity;
     }
+}
     $_SESSION['total_quantity']=$total_quantity;
     return $total;
     
@@ -110,6 +111,7 @@ $_SESSION['total'] = CartTotal();
             <th>Quantity</th>
             <th>SubTotal</th>
         </tr>
+           <?php if(isset($_SESSION['cart'])) {?>
         <?php foreach ($_SESSION['cart'] as $key => $value) { ?>
             <tr class="bg-secondary ">
                 <td>
@@ -140,6 +142,8 @@ $_SESSION['total'] = CartTotal();
                 </td>
             </tr>
         <?php } ?>
+        <?php } ?>
+
     </table>
 
 
@@ -154,9 +158,11 @@ $_SESSION['total'] = CartTotal();
         </tr>
 
     </table>
+    <?php if(isset($_SESSION['cart']) ) {?>
     <form action="checkout.php" method="post">
         <input type="submit" value="Checkout" name="checkout" class="btn btn-primary mb-5">
     </form>
+    <?php }?>
 </div>
 
 

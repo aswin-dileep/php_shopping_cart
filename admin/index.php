@@ -41,6 +41,7 @@ $all_orders = mysqli_query($con, $orders_qry);
                 <th>User Address</th>
                 <th>User City</th>
                 <th>Order Date </th>
+                <th>Details</th>
                 <th>Edit </th>
                 <th>Delete</th>
             </tr>
@@ -53,6 +54,7 @@ $all_orders = mysqli_query($con, $orders_qry);
                     <td><?php echo $orders['user_address']; ?></td>
                     <td><?php echo $orders['user_city']; ?></td>
                     <td><?php echo $orders['order_date']; ?></td>
+                    <td><a href="order_details.php?order_id=<?php echo $orders['order_id']; ?>" class="btn btn-success">Details</a></td>
                     <td><a href="edit_order.php?order_id=<?php echo $orders['order_id'] ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="" class="btn btn-danger">Delete</a></td>
 
