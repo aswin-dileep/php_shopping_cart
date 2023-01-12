@@ -89,7 +89,7 @@ if (isset($_POST['login_btn'])) {
             <button class="btn btn-success mb-3" name="register"> <a href="register.php" style="color: white;
                 text-decoration: none;" class="login-btn">Create Account</a> </button>
         </form>
-         <a href="" class="nav-link text-danger ">Forget password...?</a>
+         <a href="forget_password.php" class="nav-link text-danger ">Forget password...?</a>
     </div>
 
 

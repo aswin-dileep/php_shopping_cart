@@ -5,8 +5,10 @@ include("./server/connect.php");
 if (isset($_GET['details_btn']) && isset($_GET['order_id'])) {
     $order_status = $_GET['order_status'];
     $order_id = $_GET['order_id'];
-    $order_details_qry = "SELECT * FROM order_items WHERE order_id='$order_id'";
+    $order_details_qry = "SELECT products.product_image1,products.product_name,products.product_price,order_items.product_quantity
+     FROM products INNER JOIN order_items on order_items.order_id ='$order_id' Where order_items.product_id=products.product_id ";
 
+    //select product_id form order_items where order_id='$order_id'
     $order_details_result = mysqli_query($con, $order_details_qry);
     $totalOrder = OrderTotal($order_details_result);
 } else {
@@ -48,7 +50,7 @@ function OrderTotal($order_details_result)
         <?php foreach ($order_details_result as $order_details) { ?>
             <tr class="bg-secondary ">
                 <td>
-                    <img style="width:100px; height:100px;  object-fit: contain;" src="./assets/images/<?php echo $order_details['product_image']; ?>" alt="" srcset="">
+                    <img style="width:100px; height:100px;  object-fit: contain;" src="./assets/images/<?php echo $order_details['product_image1']; ?>" alt="" srcset="">
                 </td>
 
                 <td>
