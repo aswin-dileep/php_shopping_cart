@@ -10,7 +10,7 @@ if(isset($_SESSION['admin_logged_in'])){
 if (isset($_POST['admin_login_btn'])) {
 
     $admin_email = $_POST['user'];
-    $admin_password = md5($_POST['pass']);
+    $admin_password = $_POST['pass'];
 
     $admin_login_qry = "SELECT * FROM admins WHERE admin_email='$admin_email' AND admin_password='$admin_password'";
     $admin_login_result = mysqli_query($con, $admin_login_qry);

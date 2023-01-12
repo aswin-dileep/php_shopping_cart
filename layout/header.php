@@ -21,14 +21,14 @@ session_start();
 <body class="bg-light" style="min-height: 100vh;">
     <!-- main navbar section -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary py-3 ">
-        <div class="container-fluid">
+    <nav class="navbar navbar-nav navbar-expand-lg  bg-primary   py-3 ">
+        <div class="container-fluid ">
             <a class="navbar-brand" href="./">Shopping site</a>
 
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <ul class="navbar-nav me-auto mb-2  ">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./">Home</a>
+                    <a class="nav-link active " href="./">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="products.php">Products</a>

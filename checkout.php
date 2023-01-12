@@ -27,16 +27,16 @@ if (!empty($_SESSION['cart'])) {
             <div class="col-md-6 m-auto">
 
                 <label for="">Name</label>
-                <input type="text" class="form-control" name="checkout-name">
+                <input type="text" class="form-control" name="checkout-name" required>
                 <label for="">Phone</label>
-                <input type="text" class="form-control" name="checkout-phone">
+                <input type="text" class="form-control" name="checkout-phone" required>
 
                 <label for="">Email</label>
-                <input type="text" class="form-control" name="checkout-email">
+                <input type="text" class="form-control" name="checkout-email" required>
                 <label for="">City</label>
-                <input type="text" class="form-control" name="checkout-city">
+                <input type="text" class="form-control" name="checkout-city" required>
                 <label for="">Address</label>
-                <input class="form-control" name="checkout-address" name="Checkout-Address">
+                <input class="form-control" name="checkout-address" name="Checkout-Address" required>
                 <p class="mt-2"> Total Amount is <?php echo $_SESSION['total']; ?>/-</p>
                 <input type="submit" name="place_order" value="Place Order" class="btn btn-success mt-1 mb-3">
             </div>

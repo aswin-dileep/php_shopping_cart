@@ -4,7 +4,7 @@ include("./server/connect.php");
 
 if(isset($_SESSION['logged_in'])){
     header("location:Account.php");
-    exit;
+
 }
 
 if (isset($_POST['login_btn'])) {
@@ -12,7 +12,7 @@ if (isset($_POST['login_btn'])) {
     $email = $_POST['user'];
     $password = md5($_POST['pass']);
 
-    $login_qry = "SELECT * FROM users WHERE user_email='$email' AND user_password='$password'";
+    $login_qry = "SELECT * FROM users WHERE user_email='$email' AND user_password='$password' ";
     $login_result = mysqli_query($con, $login_qry);
 
     if ($login_result) {
@@ -58,6 +58,10 @@ if (isset($_POST['login_btn'])) {
 
 <body class="login-body">
 
+<div class="navbar  bg-secondary">
+  <h4 class="">Bag store</h4>
+ <button class="btn btn-info "><a href="./admin/admin_login.php" class="nav-link  ">Admin login</a></button> 
+</div>
     <!-- login section -->
 
     <div class="login ">
@@ -85,7 +89,7 @@ if (isset($_POST['login_btn'])) {
             <button class="btn btn-success mb-3" name="register"> <a href="register.php" style="color: white;
                 text-decoration: none;" class="login-btn">Create Account</a> </button>
         </form>
-
+         <a href="" class="nav-link text-danger ">Forget password...?</a>
     </div>
 
 

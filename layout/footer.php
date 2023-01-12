@@ -1,5 +1,5 @@
-<footer class="footer" style="top: 100%; position:sticky;">
-    <div class="footer bg-primary p-3 text-light ">
+<footer class="footer bg-primary" style="top: 100%; position:sticky; ">
+    <div class="footer p-3 text-light ">
         <p class="text-center ">@copyright 2022</p>
     </div>
 
