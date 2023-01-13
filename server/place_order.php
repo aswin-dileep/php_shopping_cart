@@ -49,17 +49,25 @@ if (isset($_POST['place_order'])) {
         user_id) VALUES('$order_id','$product_id','$product_quantity','$user_id')";
 
         mysqli_query($con, $order_items_qry);
-        unset($_SESSION['cart']);
+        //subtraction the value of product quantity in the product table
+        $current_quantity=mysqli_query($con,"SELECT product_quantity FROM products WHERE product_id='$product_id' ");
+        
+        while($row =mysqli_fetch_array($current_quantity)){
+            $new_quantity =  $row['product_quantity'] -  (int)$product_quantity ;
+       
+        }
+       
+        mysqli_query($con,"UPDATE products SET product_quantity='$new_quantity' WHERE product_id='$product_id' ");
+      
     }
+    unset($_SESSION['cart']);
 
     
     $_SESSION['order_id']= $order_id;
 
 
-    header('location:../payment.php?order_status="order placed successfully"');
+    header('location:../payment.php');
 } else {
     echo '<script>alert("Something went wrong");</script>';
 }
 }
-
-?>
