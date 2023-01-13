@@ -74,7 +74,7 @@ if (isset($_POST['login_btn'])) {
         <form action="login.php" method="POST">
 
             <div class="container">
-                <input type="text" class="form-control mt-4" placeholder="Username" name="user">
+                <input type="email" class="form-control mt-4" placeholder="Username" name="user">
 
                 <input type="password" class="form-control mt-3" placeholder="Password" id="password" name="pass">
 

@@ -12,7 +12,7 @@ if(isset($_POST['order_id'])&&isset($_POST['stripeToken'])){
     mysqli_query($con,$change_status_qry);
     
     //Storing payment info
-    $payment_qry ="INSERT INTO payments (order_id,user_id,transaction_id,payment_date) VALUES ('$order_id','$user_id','$transaction_id',$payment_date)";
+    $payment_qry ="INSERT INTO payments (order_id,user_id,transaction_id,payment_date) VALUES ('$order_id','$user_id','$transaction_id','$payment_date')";
 
     mysqli_query($con,$payment_qry);
 

@@ -5,7 +5,7 @@ include("./server/connect.php");
 if (isset($_GET['details_btn']) && isset($_GET['order_id'])) {
     $order_status = $_GET['order_status'];
     $order_id = $_GET['order_id'];
-    $order_details_qry = "SELECT products.product_image1,products.product_name,products.product_price,order_items.product_quantity
+    $order_details_qry = "SELECT products.product_image1,products.product_name,products.product_price,order_items.item_quantity
      FROM products INNER JOIN order_items on order_items.order_id ='$order_id' Where order_items.product_id=products.product_id ";
 
     //select product_id form order_items where order_id='$order_id'
@@ -22,7 +22,7 @@ function OrderTotal($order_details_result)
 
     foreach ($order_details_result as $order_details) {
         $order_price = $order_details['product_price'];
-        $order_quantity = $order_details['product_quantity'];
+        $order_quantity = $order_details['item_quantity'];
 
         $total = $total + ($order_price * $order_quantity);
     }
@@ -63,7 +63,7 @@ function OrderTotal($order_details_result)
 
 
                 <td>
-                    <h6><?php echo $order_details['product_quantity'] ?></h6>
+                    <h6><?php echo $order_details['item_quantity'] ?></h6>
                 </td>
 
             </tr>

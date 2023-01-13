@@ -2,7 +2,7 @@
 <?php 
     if(isset($_GET['order_id'])){
         $order_id = $_GET['order_id'];
-        $order_details_qry ="SELECT products.product_id, products.product_image1,products.product_name,products.product_price,order_items.product_quantity
+        $order_details_qry ="SELECT products.product_id, products.product_image1,products.product_name,products.product_price,order_items.item_quantity
         FROM products INNER JOIN order_items on order_items.order_id ='$order_id' WHERE order_items.product_id=products.product_id ";
    
     
@@ -31,7 +31,7 @@
                 <td><?php echo $order['product_id']; ?></td>
                 <td><?php echo $order['product_name']; ?></td>
                 <td> <img src="../assets/images/<?php echo $order['product_image1']; ?>" alt="" style="width:100px" srcset=""> </td>
-                <td><?php echo $order['product_quantity']; ?></td>
+                <td><?php echo $order['item_quantity']; ?></td>
                 <td><?php echo $order['product_price']; ?></td>
                 </tr>
             <?php } ?>

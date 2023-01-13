@@ -42,16 +42,14 @@ if (isset($_POST['place_order'])) {
     foreach ($_SESSION['cart'] as $key => $value) {
         $product = $_SESSION['cart'][$key];
         $product_id = $product['product_id'];
-        $product_name = $product['product_name'];
-        $product_price = $product['product_price'];
-        $product_image = $product['product_image'];
         $product_quantity = $product['product_quantity'];
 
         // store items in order items database 
-        $order_items_qry = "INSERT INTO order_items (order_id,product_id,product_name,product_image,product_price,product_quantity,
-        user_id,order_date) VALUES('$order_id','$product_id','$product_name','$product_image','$product_price','$product_quantity','$user_id','$order_date')";
+        $order_items_qry = "INSERT INTO order_items (order_id,product_id,item_quantity,
+        user_id) VALUES('$order_id','$product_id','$product_quantity','$user_id')";
 
         mysqli_query($con, $order_items_qry);
+        unset($_SESSION['cart']);
     }
 
     
