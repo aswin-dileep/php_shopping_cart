@@ -48,7 +48,7 @@ $all_products = mysqli_query($con, $products_qry);
                 <th>Name</th>
                 <th>Price</th>
                 <th>Category</th>
-                <th>Color</th>
+             
                 <th>Quantity</th>
                 <th>Edit </th>
                 <th>Delete</th>
@@ -60,7 +60,7 @@ $all_products = mysqli_query($con, $products_qry);
                     <td><?php echo $product['product_name']; ?></td>
                     <td><?php echo $product['product_price']; ?>/-</td>
                     <td><?php echo $product['product_category']; ?></td>
-                    <td><?php echo $product['product_color']; ?></td>
+                   
                     <td><?php echo $product['product_quantity']; ?></td>
                     <td><a href="edit_product.php?product_id=<?php echo $product['product_id'] ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="delete_product.php?product_id=<?php echo $product['product_id']?>" class="btn btn-danger">Delete</a></td>

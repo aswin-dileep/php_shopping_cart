@@ -24,8 +24,8 @@ session_start();
   }
 
   if(isset($_POST['nav_search'])){
-    $search_data = $_POST['search_data'];
-    $all_products_qry="SELECT * FROM products WHERE product_name LIKE '%$search_data%' OR product_color LIKE '%$search_data%' OR product_category LIKE '%$search_data%' OR product_description LIKE '%$search_data%'";
+    $search_data =mysqli_real_escape_string($con,$_POST['search_data']);
+    $all_products_qry="SELECT * FROM products WHERE search_keyword LIKE '%$search_data%'  ";
     $all_products_result = mysqli_query($con, $all_products_qry);
   }
 

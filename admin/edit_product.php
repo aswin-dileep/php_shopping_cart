@@ -12,9 +12,9 @@ if (isset($_GET['product_id'])) {
     $product_category = $_POST['product_category'];
     $product_price = $_POST['product_price'];
     $product_quantity = $_POST['product_quantity'];
-    $product_color = $_POST['product_color'];
+    $search_keyword = mysqli_real_escape_string($con,$_POST['search_keyword']);
 
-    $edit_qry = "UPDATE products SET product_name='$product_name', product_description='$product_description', product_price='$product_price',product_quantity='$product_quantity', product_category='$product_category',product_color='$product_color'  WHERE product_id='$product_id'";
+    $edit_qry = "UPDATE products SET product_name='$product_name', product_description='$product_description', product_price='$product_price',product_quantity='$product_quantity', product_category='$product_category',search_keyword='$search_keyword'  WHERE product_id='$product_id'";
     
     if(mysqli_query($con, $edit_qry)){
         
@@ -54,9 +54,13 @@ if (isset($_GET['product_id'])) {
 
                     <label for="">Description</label>
                     <textarea name="product_description" id="" class="form-control" cols="30" rows="10"><?php echo $product['product_description']; ?></textarea>
-
+      
                     <label for="">Price</label>
                     <input type="text" name="product_price" value="<?php echo $product['product_price']; ?>" class="form-control">
+                   
+                    <label for="">Search Keywords</label>
+                    <textarea name="search_keyword" id="" class="form-control" cols="30" rows="10"><?php echo $product['search_keyword']; ?></textarea>
+
                     <label for="">Quantity</label>
                     <input type="text" name="product_quantity" value="<?php echo $product['product_quantity']; ?>" class="form-control">
 
@@ -67,10 +71,7 @@ if (isset($_GET['product_id'])) {
                         <option value="Travel bags">Travel Bags</option>
                         <option value="Handbags">Hand Bags</option>
                     </select>
-
-                    <label for="">Color</label>
-                    <input type="text" name="product_color" class="form-control" value="<?php echo $product['product_color']; ?>">
-
+                    
                     <input type="submit" name="edit_product_btn" class="btn btn-primary mt-2" value="Edit">
                 <?php } ?>
             </form>
