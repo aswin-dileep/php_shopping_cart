@@ -29,7 +29,8 @@ if (isset($_GET['product_id'])) {
                 <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
                 <input type="hidden" name="product_image" value="<?php echo $row['product_image1']; ?>">
                 <input type="hidden" name="product_name" value="<?php echo $row['product_name']; ?>">
-                <input type="hidden" name="product_price" value="<?php echo $row['product_price']; ?>">
+                <input type="hidden" name="product_price" value="<?php echo $row['product_price']; ?>"> 
+                <input type="hidden" name="total_product_quantity" value="<?php echo $row['product_quantity']; ?>">
                 <input type="number" name="product_quantity" value="1">
                 
                 <?php if ($row['product_quantity'] < 1) { ?>

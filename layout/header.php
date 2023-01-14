@@ -33,15 +33,16 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" href="products.php">Products</a>
                 </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact Us</a>
-                </li>
+               
                 <li class="nav-item">
                     <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"></i><sup class=" text-danger"><b ><?php if(isset($_SESSION['total_quantity']) && $_SESSION['total_quantity']!=0) {  echo $_SESSION['total_quantity'];}?> </b></sup> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Account.php">Account<i class="fa-solid fa-user"></i></a>
+                </li>
+                 
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
 
             </ul>
