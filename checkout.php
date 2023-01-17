@@ -32,7 +32,7 @@ if (!empty($_SESSION['cart'])) {
                 <input type="text" class="form-control" name="checkout-phone" minlength="10" required>
 
                 <label for="">Email</label>
-                <input type="text" class="form-control" name="checkout-email" required>
+                <input type="email" class="form-control" name="checkout-email" required>
                 <label for="">City</label>
                 <input type="text" class="form-control" name="checkout-city" required>
                 <label for="">Address</label>

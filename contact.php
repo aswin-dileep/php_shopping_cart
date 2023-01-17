@@ -13,7 +13,7 @@
 
                     <!--Form with header-->
 
-                    <form action="mail.php" method="post">
+                    <form action="https://formsubmit.co/aswindilip5@gmail.com" method="post">
                         <div class="card border-primary rounded-0">
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">
@@ -29,7 +29,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Enter your name" required>
+                                        <input type="text" class="form-control" id="nombre" name="name" placeholder="Enter your name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -61,6 +61,9 @@
 
 
                 </div>
+                
 	</div>
+
 </div>
+
  <?php include("./layout/footer.php"); ?>

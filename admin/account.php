@@ -5,7 +5,7 @@ $users = mysqli_query($con,$all_users_qry);
 <div class="row">
     <?php include("sidemenu.php");?>
 
-    <div class="col-md-10 bg-light">
+    <div class="col-md-10 bg-light" style="height:100vh;">
         <h3>Admin panel</h3>
         <hr>
         <h4 class="text-center">All Users </h4>

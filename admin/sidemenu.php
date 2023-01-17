@@ -7,7 +7,8 @@
         <li><a href="products.php" class="list-group-item ">Products</a></li>
         <li><a href="account.php" class="list-group-item list-group-item-secondary">Account</a></li>
         <li><a href="add_new_products.php" class="list-group-item ">Add New Products</a></li>
-       
+        <li><a href="sales_report.php" class="list-group-item list-group-item-secondary">Sales Report</a></li>
+        
 
     </ul>
 

@@ -67,7 +67,7 @@
 
         while ($row = mysqli_fetch_array($result)) { ?>
             <div class='col-md-3 '>
-                <div class='card' style='width: 18rem;'>
+            <div class='card' style='width: 18rem;'>
                     <img class='card-img-top' src='./assets/images/<?php echo $row['product_image1'] ?>' alt='Card image cap'>
                     <div class='card-body'>
                         <h5 class='card-title'><?php echo $row['product_name'] ?></h5>
@@ -94,11 +94,11 @@
 
         while ($row = mysqli_fetch_array($result)) { ?>
             <div class='col-md-3 '>
-                <div class='card' style='width: 18rem;'>
+            <div class='card' style='width: 18rem;'>
                     <img class='card-img-top' src='./assets/images/<?php echo $row['product_image1'] ?>' alt='Card image cap'>
                     <div class='card-body'>
                         <h5 class='card-title'><?php echo $row['product_name'] ?></h5>
-                        <p class='card-text text-center'><?php echo $row['product_price'] ?>/-</p>
+                        <p class='card-text text-center'><?php echo $row['product_price'] ?></p>
                         <a href='single-product.php?product_id=<?php echo $row['product_id'] ?>' class='btn btn-primary'>Buy now</a>
                     </div>
                 </div>

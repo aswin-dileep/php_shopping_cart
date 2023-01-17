@@ -118,7 +118,7 @@ if (isset($_SESSION['logged_in'])) {
     <div id="orders" class="container">
         <h3 class="mt-5">Your Order</h3>
 
-        <table class="table mt-5 text-center ">
+        <table class="table mt-5 text-center table-striped">
             <tr class="bg-primary">
                 <th>Order_id</th>
                 <th>Order cost</th>

@@ -2,32 +2,30 @@
 include("./server/connect.php");
 session_start();
 
-  if(isset($_POST['filter_search']))  {
+if (isset($_POST['filter_search'])) {
 
-       $price = $_POST['price'];
+    $price = $_POST['price'];
 
-       if(isset($_POST['Category'])){
-        $category =$_POST['Category'];
-        
+    if (isset($_POST['Category'])) {
+        $category = $_POST['Category'];
+
         $all_products_qry = "SELECT * FROM products WHERE product_category='$category' AND product_price<='$price'";
         $all_products_result = mysqli_query($con, $all_products_qry);
-       }else{
+    } else {
         $all_products_qry = "SELECT * FROM products WHERE  product_price<='$price'";
-     
+
         $all_products_result = mysqli_query($con, $all_products_qry);
-       }
-  
-  }else{
+    }
+} else {
     $all_products_qry = "SELECT * FROM products";
     $all_products_result = mysqli_query($con, $all_products_qry);
-    
-  }
+}
 
-  if(isset($_POST['nav_search'])){
-    $search_data =mysqli_real_escape_string($con,$_POST['search_data']);
-    $all_products_qry="SELECT * FROM products WHERE search_keyword LIKE '%$search_data%'  ";
+if (isset($_POST['nav_search'])) {
+    $search_data = mysqli_real_escape_string($con, $_POST['search_data']);
+    $all_products_qry = "SELECT * FROM products WHERE search_keyword LIKE '%$search_data%'  ";
     $all_products_result = mysqli_query($con, $all_products_qry);
-  }
+}
 
 
 ?>
@@ -69,7 +67,9 @@ session_start();
                     <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"><sup class="text-danger"><b ><?php if(isset($_SESSION['total_quantity']) && $_SESSION['total_quantity']!=0) {  echo $_SESSION['total_quantity'];}?> </b></sup></i>  </a>
+                    <a class="nav-link" href="cart.php">Cart<i class="fa-sharp fa-solid fa-cart-shopping"><sup class="text-danger"><b><?php if (isset($_SESSION['total_quantity']) && $_SESSION['total_quantity'] != 0) {
+                                                                                                                                            echo $_SESSION['total_quantity'];
+                                                                                                                                        } ?> </b></sup></i> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Account.php">Account<i class="fa-solid fa-user"></i></a>
@@ -92,60 +92,66 @@ session_start();
     <div class=" mx-5 mt-5 ">
 
         <div class="row">
-        <h3 class="text-center mb-4">Our Products</h3>
-            <div class="col-md-2 " >
+            <h3 class="text-center mb-4">Our Products</h3>
+            <div class="col-md-2 ">
                 <h4 class="text-center">Search products</h4>
 
                 <h5 class=" mt-5">Category</h5>
-                 <form action="./products.php" method="POST">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Category" value="Casual bags" <?php if(isset($category) && $category=='Casual bags'){echo 'checked';} ?> >
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Causal Bags
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Category" value="Travel bags" <?php if(isset($category) && $category=='Travel bags'){echo 'checked';} ?> >
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Travel bags
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Category" value="Handbags" <?php if(isset($category) && $category=='Handbags'){echo 'checked';} ?>>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Handbags
-                    </label>
-                </div>
+                <form action="./products.php" method="POST">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Category" value="Casual bags" <?php if (isset($category) && $category == 'Casual bags') {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Causal Bags
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Category" value="Travel bags" <?php if (isset($category) && $category == 'Travel bags') {
+                                                                                                                echo 'checked';
+                                                                                                            } ?>>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Travel bags
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Category" value="Handbags" <?php if (isset($category) && $category == 'Handbags') {
+                                                                                                            echo 'checked';
+                                                                                                        } ?>>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Handbags
+                        </label>
+                    </div>
 
-                <h5 class=" mt-5">Price</h5>
-                <input type="range" class="form-range " name="price" value="<?php if(isset($price)){ echo $price; } ?>"  min="100" max="10000" id="customRange1">
-                <div class="">
-                    <span style="float: left;">100</span>
-                    <span style="float: right;">10000</span>
-                </div>
-                <div class="w-50 ">
-                <input type="submit" value="search" name="filter_search" class="form-control mt-3 btn btn-primary">
+                    <h5 class=" mt-5">Price</h5>
+                    <input type="range" class="form-range " name="price" value="<?php if (isset($price)) {
+                                                                                    echo $price;
+                                                                                } ?>" min="100" max="10000" id="customRange1">
+                    <div class="">
+                        <span style="float: left;">100</span>
+                        <span style="float: right;">10000</span>
+                    </div>
+                    <div class="w-50 ">
+                        <input type="submit" value="search" name="filter_search" class="form-control mt-3 btn btn-primary">
 
-                </div>
+                    </div>
                 </form>
             </div>
             <div class="col-md-10">
-                <div class="row"> 
-                      
-                    <?php while ($all_products = mysqli_fetch_array($all_products_result)) { ?>
-                        <div class='col-md-3 mb-3'>
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="../E-com/images/<?php echo $all_products['product_image1']; ?>" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $all_products['product_name'] ?></h5>
-                                    <p class="card-text text-center"><?php echo $all_products['product_price']; ?></p>
-                                    <a href="./single-product.php?product_id=<?php echo $all_products['product_id'] ?>" class="btn btn-primary">Buy Now</a>
+                <div class="row">
 
+                    <?php while ($all_products = mysqli_fetch_array($all_products_result)) { ?>
+                        <div class='col-md-3 '>
+                            <div class='card' style='width: 18rem;'>
+                                <img class='card-img-top' src='./assets/images/<?php echo $all_products['product_image1'] ?>' alt='Card image cap'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'><?php echo $all_products['product_name'] ?></h5>
+                                    <p class='card-text text-center'><?php echo $all_products['product_price'] ?></p>
+                                    <a href='single-product.php?product_id=<?php echo $all_products['product_id'] ?>' class='btn btn-primary'>Buy now</a>
                                 </div>
                             </div>
                         </div>
-
-                    <?php } ?>
+                    <?php } ?> 
 
                 </div>
             </div>
