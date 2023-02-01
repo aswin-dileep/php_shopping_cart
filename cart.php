@@ -46,7 +46,7 @@ if (isset($_POST['add-to-cart'])) {
         $product_price = $_POST['product_price'];
         $product_image = $_POST['product_image'];
         $product_quantity = $_POST['product_quantity'];
-        $total_product_quantity = $_POST['total_quantity'];
+        $total_product_quantity = $_POST['total_product_quantity'];
         if($product_quantity<1){
             $product_quantity =1;
         }
@@ -54,7 +54,7 @@ if (isset($_POST['add-to-cart'])) {
         if($product_quantity>$total_product_quantity){
 
             echo "<script>alert('sorry Available quantity is $total_product_quantity please re-enter your product_quantity ')</script>";
-            header("refresh:0;url=single-product.php?product_id=$product_id");
+          //  header("refresh:0;url=single-product.php?product_id=$product_id");
         }else{
 
             $product_array = array(
