@@ -1,6 +1,6 @@
-<footer class="footer bg-primary" style="top: 100%; position:sticky; ">
+<footer class="footer bg-primary mt-2" style="top: 100%; position:sticky; ">
     <div class="footer p-3 text-light ">
-        <p class="text-center ">@copyright 2022</p>
+        <p class="text-center ">@Created by Aswin and Alvin</p>
     </div>
 
 </footer>

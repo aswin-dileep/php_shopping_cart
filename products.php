@@ -23,7 +23,7 @@ if (isset($_POST['filter_search'])) {
 
 if (isset($_POST['nav_search'])) {
     $search_data = mysqli_real_escape_string($con, $_POST['search_data']);
-    $all_products_qry = "SELECT * FROM products WHERE search_keyword LIKE '%$search_data%'  ";
+    $all_products_qry = "SELECT * FROM products WHERE search_keyword LIKE '%$search_data%' OR product_description LIKE '%$search_data%' OR product_category LIKE '%$search_data%' OR product_name LIKE '%$search_data%' ";
     $all_products_result = mysqli_query($con, $all_products_qry);
 }
 
@@ -50,7 +50,7 @@ if (isset($_POST['nav_search'])) {
 <body class="bg-light">
     <!-- main navbar section -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary py-3 ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3 ">
         <div class="container-fluid">
             <a class="navbar-brand" href="./">Shopping site</a>
 

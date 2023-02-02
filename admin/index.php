@@ -5,10 +5,22 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 if(isset($_POST['search_btn'])){
     $search_key =$_POST['search_key'];
-    $orders_qry ="SELECT * FROM orders WHERE order_id LIKE '%$search_key%' OR user_city LIKE '%$search_key%' OR order_status LIKE '$search_key%' 
-    OR user_id LIKE '%$search_key%' OR user_phone LIKE '%$search_key%' OR user_address LIKE '%$search_key%' OR order_date LIKE '%$search_key%' ";
+    $orders_qry ="SELECT * FROM orders WHERE order_id LIKE '%$search_key%' OR order_status LIKE '$search_key%' ";
 }else{
-    $orders_qry = "SELECT * FROM orders ORDER BY order_id DESC LIMIT 15 ";
+    $order_per_page = 10;
+    $total_order_qry = "SELECT * FROM orders";
+    $total_order_result = mysqli_query($con,$total_order_qry);
+    $total_orders = mysqli_num_rows($total_order_result);
+    if (!isset($_GET['page'])) {
+        $page = 1;
+    } else {
+        $page = $_GET['page'];
+    }
+    $no_of_pages = ceil($total_orders/$order_per_page);
+    $starting_page = ($page-1)*$order_per_page;
+
+    $orders_qry = "SELECT * FROM orders ORDER BY order_id DESC LIMIT $starting_page,$order_per_page ";
+   
 }
 
 $all_orders = mysqli_query($con, $orders_qry);
@@ -23,7 +35,7 @@ $all_orders = mysqli_query($con, $orders_qry);
       <div class="text-center">
       <form class="form-group" method="post" action="index.php">
             <div class="input-group w-50 ">
-                <input type="text" class="form-control" name="search_key" placeholder="Enter..">
+                <input type="text" class="form-control" name="search_key" placeholder="Enter Order Id or Order Status">
                 <div class="input-group-append">
                     <input type="submit" class="btn btn-success" name="search_btn" value="Search">
                 </div>
@@ -43,7 +55,7 @@ $all_orders = mysqli_query($con, $orders_qry);
                 <th>Order Date </th>
                 <th>Details</th>
                 <th>Edit </th>
-                <th>Delete</th>
+                
             </tr>
             <?php foreach ($all_orders as $orders) { ?>
                 <tr class=" ">
@@ -56,10 +68,35 @@ $all_orders = mysqli_query($con, $orders_qry);
                     <td><?php echo $orders['order_date']; ?></td>
                     <td><a href="order_details.php?order_id=<?php echo $orders['order_id']; ?>" class="btn btn-success">Details</a></td>
                     <td><a href="edit_order.php?order_id=<?php echo $orders['order_id'] ?>" class="btn btn-primary">Edit</a></td>
-                    <td><a href="" class="btn btn-danger">Delete</a></td>
+                   
 
                 </tr>
             <?php } ?>
         </table>
+        <?php if(!isset($_POST['search_btn'])) { ?>
+        <nav >
+            <ul class="pagination">
+                <li class="page-item  <?php if($page==1){echo 'disabled';} ?> ">
+                <a href="<?php if($page==1){echo'#';}else{ echo"?page=".$page-1;}?>" class="page-link">Previous</a>
+             </li>
+
+
+             <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+             <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+
+             <?php if($page>=3) {?>
+                <li class="page-item"><a class="page-link" href="">....</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page ?></a>
+                </li>
+                <?php }?>
+
+                <li class="page-item  <?php if($page>=$no_of_pages){echo 'disabled';} ?>">
+                <a class="page-link" href="<?php if($page==$no_of_pages){echo'#';}else{ echo"?page=".$page+1;}?>">Next</a>
+             </li>
+
+            </ul>
+        </nav>
+        <?php }?>
     </div>
 </div>

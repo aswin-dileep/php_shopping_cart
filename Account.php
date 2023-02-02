@@ -59,104 +59,150 @@ if (isset($_POST['change_password'])) {
 
 if (isset($_SESSION['logged_in'])) {
     $user_id = $_SESSION['user_id'];
-    $order_qry = "SELECT * FROM orders WHERE user_id='$user_id' ORDER BY order_id DESC  limit 10 ";
+
+    $page_qry = "SELECT * FROM orders WHERE user_id='$user_id'";
+    $page_result = mysqli_query($con, $page_qry);
+
+    $order_per_page = 5;
+    $no_of_orders = mysqli_num_rows($page_result);
+    $no_of_pages = ceil($no_of_orders / $order_per_page);
+
+    if (!isset($_GET['page'])) {
+        $page = 1;
+    } else {
+        $page = $_GET['page'];
+    }
+  
+    $starting_page = ($page - 1) * $order_per_page;
+
+    $order_qry = "SELECT * FROM orders WHERE user_id='$user_id' ORDER BY order_id DESC LIMIT $starting_page,$order_per_page";
     $order_result = mysqli_query($con, $order_qry);
 }
 
 ?>
 
-    <!-- Account section -->
+<!-- Account section -->
 
-    <div class="row">
-        <?php if(isset($_GET['payment_message'])){?>
+<div class="row">
+    <?php if (isset($_GET['payment_message'])) { ?>
         <p class="text-center text-success"><?php echo $_GET['payment_message']; ?></p>
-        <?php } ?>
-        <div class="col-md-6 text-center">
-            
-            <p class="text-center mt-3 text-success"><?php if (isset($_GET['message'])) {
-                                                            echo $_GET['message'];
-                                                        } ?></p>
-            <h3 class=" mt-2">Account Info</h3>
-            <p class=" mt-3">Name : <?php if (isset($_SESSION['user_name'])) {
-                                        echo $_SESSION['user_name'];
-                                    } ?> </p>
-            <p class=" mt-3">Email : <?php if (isset($_SESSION['user_email'])) {
-                                            echo $_SESSION['user_email'];
-                                        } ?> </p>
-            <a href="#orders" class="btn text-info">Your Order</a><br>
-            <a href="Account.php?logout=1" class="btn text-info">Logout</a>
+    <?php } ?>
+    <div class="col-md-6 text-center">
 
-        </div>
-
-        <div class="col-md-6 ">
-            <p class="text-center text-danger mt-4"><?php if (isset($_GET['error'])) {
-                                                        echo $_GET['error'];
+        <p class="text-center mt-3 text-success"><?php if (isset($_GET['message'])) {
+                                                        echo $_GET['message'];
                                                     } ?></p>
-            <p class="text-center text-success"><?php if (isset($_GET['change_message'])) {
-                                                    echo $_GET['change_message'];
+        <h3 class=" mt-2">Account Info</h3>
+        <p class=" mt-3">Name : <?php if (isset($_SESSION['user_name'])) {
+                                    echo $_SESSION['user_name'];
+                                } ?> </p>
+        <p class=" mt-3">Email : <?php if (isset($_SESSION['user_email'])) {
+                                        echo $_SESSION['user_email'];
+                                    } ?> </p>
+        <a href="#orders" class="btn text-info">Your Order</a><br>
+        <a href="Account.php?logout=1" class="btn text-info">Logout</a>
+
+    </div>
+
+    <div class="col-md-6 ">
+        <p class="text-center text-danger mt-4"><?php if (isset($_GET['error'])) {
+                                                    echo $_GET['error'];
                                                 } ?></p>
-            <h3 class="mt-5 text-center">Change Password</h3>
-            <form action="" method="post">
-                <div class="form-group m-auto w-50 ">
-                    <label for="" class="mt-2">Current Password</label>
-                    <input type="text" class="form-control" placeholder="Enter Current Password" name="current_password">
-                    <label for="" class="mt-2">New Password</label>
-                    <input type="text" class="form-control" placeholder="Enter NewPassword" name="new_password">
-                    <label for="" class="mt-2">Confirm Password</label>
-                    <input type="password" class="form-control" placeholder="Re-type New Password" name="confirm_password">
-                    <div class="text-center">
-                        <input type="submit" value="Change password" name="change_password" class="btn btn-success mt-2">
+        <p class="text-center text-success"><?php if (isset($_GET['change_message'])) {
+                                                echo $_GET['change_message'];
+                                            } ?></p>
+        <h3 class="mt-5 text-center">Change Password</h3>
+        <form action="" method="post">
+            <div class="form-group m-auto w-50 ">
+                <label for="" class="mt-2">Current Password</label>
+                <input type="text" class="form-control" placeholder="Enter Current Password" name="current_password">
+                <label for="" class="mt-2">New Password</label>
+                <input type="text" class="form-control" placeholder="Enter NewPassword" name="new_password">
+                <label for="" class="mt-2">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Re-type New Password" name="confirm_password">
+                <div class="text-center">
+                    <input type="submit" value="Change password" name="change_password" class="btn btn-success mt-2">
 
-                    </div>
                 </div>
+            </div>
 
-            </form>
-        </div>
+        </form>
     </div>
+</div>
 
-    <!-- Order section -->
-    <div id="orders" class="container">
-        <h3 class="mt-5">Your Order</h3>
+<!-- Order section -->
+<div id="orders" class="container">
+    <h3 class="mt-5">Your Order</h3>
 
-        <table class="table mt-5 text-center table-striped">
-            <tr class="bg-primary">
-                <th>Order_id</th>
-                <th>Order cost</th>
-                <th>Order status</th>
-                <th>Order date</th>
-                <th>Order details</th>
+    <table class="table mt-5 text-center table-striped">
+        <tr class="bg-primary">
+            <th>Order_id</th>
+            <th>Order cost</th>
+            <th>Order status</th>
+            <th>Order date</th>
+            <th>Order details</th>
+        </tr>
+        <?php while ($order = mysqli_fetch_array($order_result)) { ?>
+            <tr class="bg-secondary ">
+                <td>
+                    <h6><?php echo $order['order_id'] ?></h6>
+                </td>
+
+                <td>
+                    <h6><?php echo $order['order_cost'] ?></h6>
+                </td>
+
+                <td>
+                    <h6><?php echo $order['order_status'] ?></h6>
+                </td>
+                <td>
+                    <h6><?php echo $order['order_date'] ?></h6>
+                </td>
+                <td>
+                    <form action="order_details.php" method="get">
+                        <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
+                        <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
+                        <input type="submit" class="btn btn-primary" name="details_btn" value="Details">
+
+                    </form>
+                </td>
             </tr>
-            <?php while ($order = mysqli_fetch_array($order_result)) { ?>
-                <tr class="bg-secondary ">
-                    <td>
-                        <h6><?php echo $order['order_id'] ?></h6>
-                    </td>
 
-                    <td>
-                        <h6><?php echo $order['order_cost'] ?></h6>
-                    </td>
+        <?php } ?>
+    </table>
 
-                    <td>
-                        <h6><?php echo $order['order_status'] ?></h6>
-                    </td>
-                    <td>
-                        <h6><?php echo $order['order_date'] ?></h6>
-                    </td>
-                    <td>
-                        <form action="order_details.php" method="get">
-                            <input type="hidden" name="order_status" value="<?php echo $order['order_status']; ?>">
-                            <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
-                            <input type="submit" class="btn btn-primary" name="details_btn" value="Details">
-                        </form>
-                    </td>
-                </tr>
+  
 
-            <?php } ?>
-        </table>
+        <nav >
+            <ul class="pagination">
+                <li class="page-item  <?php if($page==1){echo 'disabled';} ?> ">
+                <a href="<?php if($page==1){echo'#';}else{ echo"?page=".$page-1;}?>" class="page-link">Previous</a>
+             </li>
 
 
+             <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+             <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+
+             <?php if($no_of_pages>=3) {?>
+                <li class="page-item"><a class="page-link" href="">....</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $no_of_pages ?>"><?php echo $no_of_pages ?></a>
+                </li>
+                <?php }?>
+
+                <li class="page-item  <?php if($page>=$no_of_pages){echo 'disabled';} ?>">
+                <a class="page-link" href="<?php if($page==$no_of_pages){echo'#';}else{ echo"?page=".$page+1;}?>">Next</a>
+             </li>
+
+            </ul>
+        </nav>
+        
+
+   
 
 
-    </div>
+
+
+</div>
 
 <?php include("./layout/footer.php"); ?>

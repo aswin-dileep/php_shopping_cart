@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 
 <head>
     <meta charset="UTF-8">
@@ -21,12 +21,12 @@ session_start();
 <body class="bg-light" style="min-height: 100vh;">
     <!-- main navbar section -->
 
-    <nav class="navbar navbar-nav navbar-expand-lg  bg-primary   py-3 ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3  ">
         <div class="container-fluid ">
             <a class="navbar-brand" href="./">Shopping site</a>
 
 
-            <ul class="navbar-nav me-auto mb-2  ">
+            <ul class="navbar-nav me-auto mt-1  ">
                 <li class="nav-item">
                     <a class="nav-link active " href="./">Home</a>
                 </li>

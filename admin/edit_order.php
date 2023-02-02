@@ -30,7 +30,7 @@
     
      <?php include("sidemenu.php"); ?>
     
-    <div class="col-md-10 bg-light">
+    <div class="col-md-10 bg-light" style="height: 100vh;">
       <h2>Admin Panel</h2>
       <hr>
       <h3>Edit Order</h3>
