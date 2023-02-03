@@ -180,13 +180,13 @@ if (isset($_SESSION['logged_in'])) {
              </li>
 
 
-             <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
-             <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+             <li class="page-item"><a class="page-link <?php if($page==1){echo "active";} ?>" href="?page=1">1</a></li>
+             <li class="page-item"><a class="page-link <?php if($page==2){echo "active";} ?>" href="?page=2">2</a></li>
 
-             <?php if($no_of_pages>=3) {?>
+             <?php if($page>=3) {?>
                 <li class="page-item"><a class="page-link" href="">....</a></li>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?php echo $no_of_pages ?>"><?php echo $no_of_pages ?></a>
+                    <a class="page-link active" href="?page=<?php echo $page ?>"><?php echo $page ?></a>
                 </li>
                 <?php }?>
 
