@@ -7,7 +7,7 @@ if(isset($_POST['search_btn'])){
     $search_key =$_POST['search_key'];
     $orders_qry ="SELECT * FROM orders WHERE order_id LIKE '%$search_key%' OR order_status LIKE '$search_key%' ";
 }else{
-    $order_per_page = 10;
+    $order_per_page = 7;
     $total_order_qry = "SELECT * FROM orders";
     $total_order_result = mysqli_query($con,$total_order_qry);
     $total_orders = mysqli_num_rows($total_order_result);
@@ -20,6 +20,7 @@ if(isset($_POST['search_btn'])){
     $starting_page = ($page-1)*$order_per_page;
 
     $orders_qry = "SELECT * FROM orders ORDER BY order_id DESC LIMIT $starting_page,$order_per_page ";
+    
    
 }
 
@@ -28,7 +29,7 @@ $all_orders = mysqli_query($con, $orders_qry);
 
 <div class="row">
     <?php include("sidemenu.php") ?>
-    <div class="col-md-10 bg-light">
+    <div class="col-md-10 bg-light" style="height:100vh;">
         <h3>Admin</h3>
         <hr>
         <h3 class="">All Orders</h3>

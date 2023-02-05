@@ -15,6 +15,9 @@ $users = mysqli_query($con,$all_users_qry);
             <th>User_id</th>
             <th>User_name</th>
             <th>User_Email</th> 
+            <th>Orders</th>
+            <th>Delete User</th>
+           
             </tr>
 
             <?php foreach($users as $user) {?>
@@ -22,6 +25,9 @@ $users = mysqli_query($con,$all_users_qry);
                     <td><?php echo $user['user_id']; ?></td>
                     <td><?php echo $user['user_name']; ?></td>
                     <td><?php echo $user['user_email']; ?></td>
+                    <td><a style="text-decoration: none;" class="btn btn-info" href="view_single_user_orders.php?user_id=<?php echo $user['user_id']; ?>">View orders</a></td>
+                    <td><a style="text-decoration: none;" class="btn btn-danger" href="delete_user.php?user_id=<?php echo $user['user_id']; ?>">Delete</a></td>
+                    
                 </tr>
            <?php } ?>
         </table>
