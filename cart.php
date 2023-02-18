@@ -199,7 +199,8 @@ $_SESSION['total'] = CartTotal();
 
     </table>
     <?php if (isset($_SESSION['cart'])) { ?>
-        <form action="checkout.php" method="post">
+        <form action="select_address.php" method="post">
+            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
             <input type="submit" value="Checkout" name="checkout" class="btn btn-primary mb-5">
         </form>
     <?php } ?>

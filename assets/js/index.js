@@ -6,3 +6,7 @@ function showPassword(){
       x.type = "password";
     }
   }
+
+function submitAddress(){
+  document.getElementById("addressform").submit();
+}

@@ -100,6 +100,7 @@ if (isset($_SESSION['logged_in'])) {
                                         echo $_SESSION['user_email'];
                                     } ?> </p>
         <a href="#orders" class="btn text-info">Your Order</a><br>
+        <a href="address.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="btn text-info">Show Address</a><br>
         <a href="Account.php?logout=1" class="btn text-info">Logout</a>
 
     </div>
@@ -172,7 +173,7 @@ if (isset($_SESSION['logged_in'])) {
     </table>
 
   
-
+        <?php if( $no_of_orders>5) {?>
         <nav >
             <ul class="pagination">
                 <li class="page-item  <?php if($page==1){echo 'disabled';} ?> ">
@@ -196,6 +197,7 @@ if (isset($_SESSION['logged_in'])) {
 
             </ul>
         </nav>
+        <?php } ?>
         
 
    

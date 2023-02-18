@@ -19,8 +19,10 @@ if(isset($_POST['search_btn'])){
     $no_of_pages = ceil($total_orders/$order_per_page);
     $starting_page = ($page-1)*$order_per_page;
 
-    $orders_qry = "SELECT * FROM orders ORDER BY order_id DESC LIMIT $starting_page,$order_per_page ";
+    $orders_qry = " SELECT orders.order_id,orders.order_status,orders.user_id,orders.order_date,user_address.phone,user_address.city,user_address.address FROM orders
+     INNER JOIN user_address  WHERE orders.address_id = user_address.address_id  ORDER BY order_id DESC LIMIT $starting_page,$order_per_page;";
     
+   // SELECT * FROM orders ORDER BY order_id DESC LIMIT $starting_page,$order_per_page
    
 }
 
@@ -63,9 +65,9 @@ $all_orders = mysqli_query($con, $orders_qry);
                     <td><?php echo $orders['order_id']; ?></td>
                     <td><?php echo $orders['order_status']; ?></td>
                     <td><?php echo $orders['user_id']; ?></td>
-                    <td><?php echo $orders['user_phone']; ?></td>
-                    <td><?php echo $orders['user_address']; ?></td>
-                    <td><?php echo $orders['user_city']; ?></td>
+                    <td><?php echo $orders['phone']; ?></td>
+                    <td><?php echo $orders['address']; ?></td>
+                    <td><?php echo $orders['city']; ?></td>
                     <td><?php echo $orders['order_date']; ?></td>
                     <td><a href="order_details.php?order_id=<?php echo $orders['order_id']; ?>" class="btn btn-success">Details</a></td>
                     <td><a href="edit_order.php?order_id=<?php echo $orders['order_id'] ?>" class="btn btn-primary">Edit</a></td>
@@ -75,6 +77,7 @@ $all_orders = mysqli_query($con, $orders_qry);
             <?php } ?>
         </table>
         <?php if(!isset($_POST['search_btn'])) { ?>
+            <?php if( $total_orders>7) {?>
         <nav >
             <ul class="pagination">
                 <li class="page-item  <?php if($page==1){echo 'disabled';} ?> ">
@@ -98,6 +101,7 @@ $all_orders = mysqli_query($con, $orders_qry);
 
             </ul>
         </nav>
-        <?php }?>
+        <?php } 
+        }?>
     </div>
 </div>

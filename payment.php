@@ -24,7 +24,6 @@ if(isset($_POST['total_order'])){
                 <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key=<?php echo $public_key; ?> data-amount='<?php echo $_POST['total_order']*100 ?>' ; data-name="Bag Shop" data-description="Enter your card details" data-currency="inr">
 
-
                 </script>
             </form>
             

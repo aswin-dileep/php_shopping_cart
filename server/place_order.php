@@ -19,12 +19,12 @@ if (isset($_POST['place_order'])) {
     $email = $_POST['checkout-email'];
     $city = $_POST['checkout-city'];
     $address = $_POST['checkout-address'];
+    $address_id = $_POST['address_id'];
     $order_cost = $_SESSION['total'];
     $order_status = "not paid";
     $user_id = $_SESSION['user_id'];
     $order_date = date('Y/m/d');
-    $checkout_qry = "INSERT INTO orders (order_cost,order_status,user_id,user_phone,user_city,user_address,order_date) VALUES('$order_cost'
-    ,'$order_status','$user_id','$phone','$city','$address','$order_date')";
+    $checkout_qry = "INSERT INTO orders (order_cost,order_status,user_id,address_id,order_date) VALUES('$order_cost','$order_status','$user_id','$address_id','$order_date')";
 
     mysqli_query($con, $checkout_qry);
 
