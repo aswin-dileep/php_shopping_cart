@@ -1,7 +1,8 @@
 <?php include("header.php") ;
 if(isset($_GET['user_id'])){
 $user_id =$_GET['user_id'];
-$all_user_order_qry ="SELECT * FROM orders where user_id ='$user_id' ORDER BY order_id DESC ";
+$all_user_order_qry ="SELECT orders.order_id, orders.order_status,orders.order_cost,orders.user_id,orders.order_date,user_address.phone,user_address.city,user_address.address FROM orders
+    INNER JOIN user_address  WHERE   orders.user_id ='$user_id' ORDER BY order_id DESC ";
 $users = mysqli_query($con,$all_user_order_qry);
 ?>
 <div class="row">
@@ -32,9 +33,9 @@ $users = mysqli_query($con,$all_user_order_qry);
                     <td><?php echo $user['order_id']; ?></td>
                     <td><?php echo $user['order_cost']; ?></td>
                     <td><?php echo $user['order_status']; ?></td>
-                    <td><?php echo $user['user_address']; ?></td>
-                    <td><?php echo $user['user_city']; ?></td>
-                    <td><?php echo $user['user_phone']; ?></td>
+                    <td><?php echo $user['address']; ?></td>
+                    <td><?php echo $user['city']; ?></td>
+                    <td><?php echo $user['phone']; ?></td>
                     <td><?php echo $user['order_date']; ?></td>
                     <td><a class="btn btn-success" href="order_details.php?order_id=<?php echo $user['order_id']; ?>">Details</a></td>
 

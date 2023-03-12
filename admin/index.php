@@ -5,7 +5,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 if(isset($_POST['search_btn'])){
     $search_key =$_POST['search_key'];
-    $orders_qry ="SELECT * FROM orders WHERE order_id LIKE '%$search_key%' OR order_status LIKE '$search_key%' ";
+    $orders_qry ="SELECT orders.order_id,orders.order_status,orders.user_id,orders.order_date,user_address.phone,user_address.city,user_address.address FROM orders
+    INNER JOIN user_address  WHERE orders.address_id = user_address.address_id  AND order_id LIKE '%$search_key%' OR order_status LIKE '$search_key%' ";
 }else{
     $order_per_page = 7;
     $total_order_qry = "SELECT * FROM orders";

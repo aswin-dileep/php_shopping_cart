@@ -12,7 +12,20 @@ if(isset($_GET['user_id'])){
     $address_qry = "SELECT * FROM user_address WHERE user_id='$user_id'";
     $address_result = mysqli_query($con,$address_qry);
     $i=0;
-}else{
+}elseif(isset($_GET['address_id'])){
+    $user_id = $_SESSION['user_id'];
+    $address_id = $_GET['address_id'];
+    $delete_qry = "DELETE FROM user_address WHERE address_id='$address_id' ";
+    $delete_address= mysqli_query($con,$delete_qry);
+
+    if(!$delete_address){
+        echo '<script>alert("Something went wrong address not deleted")</script>';
+       }else{
+          echo '<script>alert(" Address Deleted Successfully..")</script>';
+          header("Refresh:0; url=address.php?user_id=$user_id");
+       }
+}
+else{
     header("Account.php");
 }
 ?>
@@ -59,10 +72,10 @@ if(isset($_GET['user_id'])){
                     <h6><?php echo $address['address']; ?></h6>
                 </td>
                 <td>
-                   <a href="" class="btn btn-success">Edit</a>
+                   <a href="edit_address.php?address_id=<?php echo $address['address_id']; ?>" class="btn btn-success">Edit</a>
                 </td>
                 <td>
-                   <a href="" class="btn btn-danger">Delete</a>
+                   <a href="address.php?address_id=<?php echo $address['address_id']; ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
            

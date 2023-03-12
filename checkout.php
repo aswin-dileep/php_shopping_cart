@@ -1,5 +1,5 @@
 <?php
-
+ include("./server/connect.php");
  include("./layout/header.php"); 
 
 if (!empty($_SESSION['cart'])) {
@@ -36,16 +36,16 @@ if(isset($_POST['default_address'])){
             <div class="col-md-6 m-auto">
 
                 <label for="">Name</label>
-                <input type="text" class="form-control" value="<?php echo $name ?>" name="checkout-name" required>
+                <label for="" class="form-control"> <?php echo $name ?></label>
                 <label for="">Phone</label>
-                <input type="text" class="form-control" value="<?php echo $phone ?>" name="checkout-phone" minlength="10" required>
+                <label for="" class="form-control"> <?php echo $phone ?></label>
                 <input type="hidden" name="address_id" value="<?php echo $address_id ?>">
                 <label for="">Email</label>
-                <input type="email" class="form-control" value="<?php echo $email ?>" name="checkout-email" required>
+                <label for="" class="form-control"> <?php echo $email ?></label>
                 <label for="">City</label>
-                <input type="text" class="form-control" value="<?php echo $city ?>" name="checkout-city" required>
+                <label for="" class="form-control"> <?php echo $city ?></label>
                 <label for="">Address</label>
-                <input class="form-control" value="<?php echo $address ?>" name="checkout-address"  required>
+                <label for="" class="form-control"> <?php echo $address ?></label>
                 <p class="mt-2"> Total Amount is <?php echo $_SESSION['total']; ?>/-</p>
                 <input type="submit" name="place_order" value="Place Order" class="btn btn-success mt-1 mb-3">
             </div>
